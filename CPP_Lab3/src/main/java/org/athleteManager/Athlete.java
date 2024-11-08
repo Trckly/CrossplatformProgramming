@@ -1,10 +1,19 @@
 package org.athleteManager;
 
-public class Athlete {
+import java.io.Serializable;
+
+public class Athlete implements Serializable {
     private String firstName;
     private String lastName;
     private String sport;
-    private Integer medalsCount;
+    private transient Integer medalsCount;
+
+    public Athlete() {
+        firstName = "";
+        lastName = "";
+        sport = "";
+        medalsCount = 0;
+    }
 
     public Athlete(String firstName, String lastName, String sport, int medalsCount) {
         this.firstName = firstName;
