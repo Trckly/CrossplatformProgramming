@@ -57,9 +57,6 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>org.athleteManager.Main</mainClass>
-                    <modulePath>
-                        ${project.basedir}/path/to/javafx-sdk/lib
-                    </modulePath>
                 </configuration>
             </plugin>
 
