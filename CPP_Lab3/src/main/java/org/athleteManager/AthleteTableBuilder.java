@@ -1,5 +1,6 @@
 package org.athleteManager;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -30,7 +31,14 @@ public class AthleteTableBuilder {
             return new SimpleStringProperty(medalsCount != null ? medalsCount.toString() : "null");
         });
 
-        tableView.getColumns().addAll(firstNameCol, lastNameCol, sportCol, medalsCol);
+        TableColumn<Athlete, String> ageCols = new TableColumn<>("Age");
+        lastNameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAge().toString()));
+
+        TableColumn<Athlete, String> addressCols = new TableColumn<>("Address");
+        lastNameCol.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAddress().getStreet() +
+                data.getValue().getAddress().getNumber().toString()));
+
+        tableView.getColumns().addAll(firstNameCol, lastNameCol, sportCol, medalsCol, ageCols, addressCols);
         tableView.setItems(athleteObservableList);
 
         return tableView;

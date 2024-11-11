@@ -92,23 +92,35 @@ public class Main extends Application {
                 return;
             }
 
-            Athlete newAthlete = new Athlete(firstName, lastName, sport, medals, age);
+            Athlete newAthlete = new Athlete(firstName, lastName, sport, medals, age, new Address());
 
             AthleteIoManager.writeAthleteData(newAthlete, "athlete_io_data.txt");
             athleteIOList = AthleteIoManager.readAthleteData("athlete_io_data.txt");
             AthleteTableBuilder.updateAthleteTable(ioTableView, athleteIOList);
+            System.out.println("Athlete IO List");
+            athleteIOList.forEach(System.out::println);
+            System.out.println('\n');
 
             AthleteNativeManager.writeAthleteData(newAthlete, "athlete_native_data.dat");
             athleteNativeList = AthleteNativeManager.readAthleteData("athlete_native_data.dat");
             AthleteTableBuilder.updateAthleteTable(nativeTableView, athleteNativeList);
+            System.out.println("Athlete Native List");
+            athleteNativeList.forEach(System.out::println);
+            System.out.println('\n');
 
             AthleteJsonManager.writeAthleteData(newAthlete, "athlete_data.json");
             athleteJsonList = AthleteJsonManager.readAthleteData("athlete_data.json");
             AthleteTableBuilder.updateAthleteTable(jsonTableView, athleteJsonList);
+            System.out.println("Athlete JSON List");
+            athleteJsonList.forEach(System.out::println);
+            System.out.println('\n');
 
             AthleteYamlManager.writeAthleteData(newAthlete, "athlete_data.yaml");
             athleteYamlList = AthleteYamlManager.readAthleteData("athlete_data.yaml");
             AthleteTableBuilder.updateAthleteTable(yamlTableView, athleteYamlList);
+            System.out.println("Athlete YAML List");
+            athleteYamlList.forEach(System.out::println);
+            System.out.println('\n');
 
             // Clear fields
             firstNameField.clear();

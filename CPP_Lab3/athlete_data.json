@@ -1,0 +1,22 @@
+[
+  {
+    "firstName": "Danylo",
+    "lastName": "Shlomiak",
+    "sport": "Dancing",
+    "age": 18,
+    "address": {
+      "street": "default street",
+      "number": 15
+    }
+  },
+  {
+    "firstName": "Andriy",
+    "lastName": "Kmit",
+    "sport": "Shoot",
+    "age": 31,
+    "address": {
+      "street": "default street",
+      "number": 15
+    }
+  }
+]

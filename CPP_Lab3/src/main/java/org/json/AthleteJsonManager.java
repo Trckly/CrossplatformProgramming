@@ -57,8 +57,6 @@ public class AthleteJsonManager {
             System.err.println(e.getMessage());
         }
 
-        athleteList.forEach(System.out::println);
-
         return FXCollections.observableList(athleteList);
     }
 }

@@ -7,6 +7,7 @@ public class Athlete implements Serializable {
     private String lastName;
     private String sport;
     private Integer age;
+    private Address address;
     private transient Integer medalsCount;
 
 
@@ -15,6 +16,7 @@ public class Athlete implements Serializable {
         lastName = "";
         sport = "";
         medalsCount = 0;
+        address = new Address();
         this.age = 0;
     }
 
@@ -23,6 +25,7 @@ public class Athlete implements Serializable {
         this.lastName = lastName;
         this.sport = sport;
         this.medalsCount = null;
+        this.address = new Address();
         this.age = 0;
     }
 
@@ -31,14 +34,25 @@ public class Athlete implements Serializable {
         this.lastName = lastName;
         this.sport = sport;
         this.medalsCount = medalsCount;
+        this.address = new Address();
         this.age = 0;
     }
 
-    public Athlete(String firstName, String lastName, String sport, int medalsCount, Integer age) {
+    public Athlete(String firstName, String lastName, String sport, Integer medalsCount, Integer age) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.sport = sport;
         this.medalsCount = medalsCount;
+        this.address = new Address();
+        this.age = age;
+    }
+
+    public Athlete(String firstName, String lastName, String sport, Integer medalsCount, Integer age, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.sport = sport;
+        this.medalsCount = medalsCount;
+        this.address = new Address();
         this.age = age;
     }
 
@@ -79,8 +93,20 @@ public class Athlete implements Serializable {
         return age;
     }
 
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
-        return firstName + " " + lastName + " - " + sport + " - Medals: " + medalsCount + " - Age: " + age;
+        return firstName + " " + lastName + " - " + sport + " - Medals: " + medalsCount + " - Age: " + age + " - Address: " + address;
     }
 }

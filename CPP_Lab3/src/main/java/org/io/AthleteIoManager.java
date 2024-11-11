@@ -1,6 +1,7 @@
 package org.io;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.athleteManager.Address;
 import org.athleteManager.Athlete;
 
 import java.io.*;
@@ -15,6 +16,12 @@ public class AthleteIoManager
             bos.write(athlete.getLastName().getBytes());
             bos.write('\n');
             bos.write(athlete.getSport().getBytes());
+            bos.write('\n');
+            bos.write(athlete.getAge().toString().getBytes());
+            bos.write('\n');
+            bos.write(athlete.getAddress().getStreet().getBytes());
+            bos.write('\n');
+            bos.write(athlete.getAddress().getNumber().toString().getBytes());
             bos.write('\n');
         } catch (IOException e) {
             System.err.println("Error writing athlete names: " + e.getMessage());
@@ -36,16 +43,23 @@ public class AthleteIoManager
             String firstName;
             String lastName;
             String sport;
+            String age;
+            String addressStreet;
+            String addressNumber;
 
             while (true) {
                 firstName = readBufferedLine(bis);
                 lastName = readBufferedLine(bis);
                 sport = readBufferedLine(bis);
+                age = readBufferedLine(bis);
+                addressStreet = readBufferedLine(bis);
+                addressNumber = readBufferedLine(bis);
 
                 if (firstName.isEmpty())
                     break;
 
-                athletes.add(new Athlete(firstName, lastName, sport, 0));
+                Address address = new Address(addressStreet, Integer.parseInt(addressNumber));
+                athletes.add(new Athlete(firstName, lastName, sport, 0, Integer.parseInt(age), address));
             }
         } catch (IOException e) {
             System.err.println("Error reading athlete names: " + e.getMessage());

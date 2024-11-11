@@ -1,0 +1,14 @@
+- address:
+    number: 15
+    street: default street
+  age: 18
+  firstName: Danylo
+  lastName: Shlomiak
+  sport: Dancing
+- address:
+    number: 15
+    street: default street
+  age: 31
+  firstName: Andriy
+  lastName: Kmit
+  sport: null

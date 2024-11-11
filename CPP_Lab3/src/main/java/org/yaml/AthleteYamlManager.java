@@ -2,6 +2,7 @@ package org.yaml;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.athleteManager.Address;
 import org.athleteManager.Athlete;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.LoaderOptions;
@@ -50,7 +51,7 @@ public class AthleteYamlManager {
 
         DumperOptions options = new DumperOptions();
         options.setPrettyFlow(true);
-//        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
 
         Representer representer = new Representer(options);
         representer.addClassTag(Athlete.class, Tag.MAP);
@@ -78,7 +79,7 @@ public class AthleteYamlManager {
         Constructor constructor = new Constructor(List.class, new LoaderOptions());
         Yaml yaml = new Yaml(constructor);
 
-        List<Map<String, String>> athletesMapList;
+        List<Map<String, Object>> athletesMapList;
         try (Reader reader = new FileReader(filename)) {
             // Load the list of maps from the YAML file
             athletesMapList = yaml.load(reader);
@@ -90,15 +91,23 @@ public class AthleteYamlManager {
             return FXCollections.observableArrayList();
         }
 
-        for (Map<String, String> athleteMap : athletesMapList) {
-            String firstName = athleteMap.get("firstName");
-            String lastName = athleteMap.get("lastName");
-            String sport = athleteMap.get("sport");
+        for (Map<String, Object> athleteMap : athletesMapList) {
+            String firstName = (String) athleteMap.get("firstName");
+            String lastName = (String) athleteMap.get("lastName");
+            String sport = (String) athleteMap.get("sport");
+
+            // Safely cast 'age' to Integer
+            Integer age = athleteMap.get("age") instanceof Integer ? (Integer) athleteMap.get("age") : Integer.valueOf((String) athleteMap.get("age"));
+
+            // Deserialize 'address' map
+            Map<String, Object> addressMap = (Map<String, Object>) athleteMap.get("address");
+            Address address = new Address((String) addressMap.get("street"), (Integer) addressMap.get("number"));
 
             // Create an Athlete object with the data from the map
-            Athlete athlete = new Athlete(firstName, lastName, sport);
+            Athlete athlete = new Athlete(firstName, lastName, sport, null, age, address);
             athletes.add(athlete);
         }
+
 
         // Return the ObservableList of Athlete objects
         return FXCollections.observableArrayList(athletes);
@@ -111,9 +120,9 @@ public class AthleteYamlManager {
 //    public static void main(String[] args) {
 //        // Create a list of example Athlete objects
 //        List<Athlete> athletes = new ArrayList<>();
-//        athletes.add(new Athlete("John", "Doe", "Swimming", 5, 25));
-//        athletes.add(new Athlete("Jane", "Smith", "Running", 8, 45));
-//        athletes.add(new Athlete("Michael", "Johnson", "Cycling", 3, 78));
+//        athletes.add(new Athlete("John", "Doe", "Swimming", 5, 25, new Address()));
+//        athletes.add(new Athlete("Jane", "Smith", "Running", 8, 45, new Address()));
+//        athletes.add(new Athlete("Michael", "Johnson", "Cycling", 3, 78, new Address()));
 //
 //        // File path for YAML file
 //        String filePath = "athletes.yaml";
