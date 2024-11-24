@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.2"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.cpp_lab4.MainViewController">
+    <HBox spacing="10">
+        <Label text="Thread Count:"/>
+        <TextField fx:id="threadCountField" prefWidth="50"/>
+        <Label text="Max Active Tasks:"/>
+        <TextField fx:id="maxActiveTasksField" prefWidth="50"/>
+        <Label text="Files Amount:"/>
+        <TextField fx:id="filesAmountField" prefWidth="50"/>
+        <Button fx:id="startButton" text="Start"/>
+    </HBox>
+    <Separator/>
+    <Label fx:id="totalTimeLabel" text="Total time: N/A"/>
+    <ScrollPane fx:id="scrollPane" fitToWidth="true">
+    <VBox fx:id="threadPanel" spacing="5" prefHeight="400" prefWidth="600"/>
+    </ScrollPane>
+</VBox>
