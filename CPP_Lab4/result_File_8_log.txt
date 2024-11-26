@@ -1,0 +1,7 @@
+File: File_8.log
+Thread ID: 55
+Start Time: 1732623151231 ms
+End Time: 1732623156113 ms
+Duration: 4882 ms
+Date Executed: 26/11/2024 14:12:36
+
